@@ -318,14 +318,17 @@ function NameCard({
 /* ──────────────────────────────────────────────────────── */
 /* OutputPanel                                              */
 /* ──────────────────────────────────────────────────────── */
-interface OutputPanelProps {
+export function OutputPanel({
+  names: propNames = [],
+  isLoading = false,
+  error = null,
+  onBookmarkToggle,
+}: {
   names?: GeneratedName[]
   isLoading?: boolean
   error?: string | null
   onBookmarkToggle?: (id: string) => void
-}
-
-export function OutputPanel({ names: propNames = [], isLoading = false, error = null, onBookmarkToggle }: OutputPanelProps) {
+}) {
   const [names, setNames] = useState<GeneratedName[]>(propNames)
   const [copiedId, setCopiedId] = useState<string | null>(null)
 
@@ -342,7 +345,7 @@ export function OutputPanel({ names: propNames = [], isLoading = false, error = 
 
   const handleBookmark = (id: string) => {
     setNames((prev) => prev.map((n) => (n.id === id ? { ...n, bookmarked: !n.bookmarked } : n)))
-    if (onBookmarkToggle) onBookmarkToggle(id)
+    onBookmarkToggle?.(id)
   }
 
   return (
@@ -498,7 +501,7 @@ export function OutputPanel({ names: propNames = [], isLoading = false, error = 
           </div>
         ) : (
           names.map((nameData, index) => (
-            <div key={`output-${nameData.id}`} style={{
+            <div key={nameData.id} style={{
               animation: `slideInCard 0.4s ease-out ${index * 0.05}s backwards`,
             }}>
               <NameCard
