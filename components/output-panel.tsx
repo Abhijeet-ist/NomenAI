@@ -498,7 +498,7 @@ export function OutputPanel({ names: propNames = [], isLoading = false, error = 
           </div>
         ) : (
           names.map((nameData, index) => (
-            <div key={nameData.id} style={{
+            <div key={`output-${nameData.id}`} style={{
               animation: `slideInCard 0.4s ease-out ${index * 0.05}s backwards`,
             }}>
               <NameCard
