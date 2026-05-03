@@ -1,0 +1,144 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ── Background Hierarchy ── */
+  --background:        #0D0E14;
+  --surface-secondary: #111118;
+  --surface-primary:   #14151C;
+  --card-bg:           #1A1D26;
+  --input-bg:          #1E1F2E;
+  --hover-bg:          #242635;
+  --tag-bg:            #2A2D3E;
+
+  /* ── Brand & Accent Colors (exact from style guide) ── */
+  --primary-purple:  #8C5CE7;
+  --primary-light:   #9D7CFF;
+  --accent-gold:     #F5A623;
+  --accent-gold-lt:  #FFDB70;
+  --accent-green:    #00D4AA;
+  --accent-blue:     #4A90D9;
+
+  /* ── CTA Gradient: gold → purple ── */
+  --gradient-cta-from: #F5A623;
+  --gradient-cta-mid:  #FFDB70;
+  --gradient-cta-to:   #8C5CE7;
+
+  /* ── New Generation button: purple gradient ── */
+  --gradient-new-from: #8C5CE7;
+  --gradient-new-to:   #9D7CFF;
+
+  /* ── Text Color Hierarchy ── */
+  --text-white:       #FFFFFF;
+  --text-primary:     #EAEAF2;
+  --text-label:       #C9C9E4;
+  --text-secondary:   #8AB8F3;
+  --text-meaning:     #9D7CFF;
+  --text-description: #6E7EB8;
+  --text-tag:         #FFFFFF;
+
+  /* ── Borders ── */
+  --border-subtle:  #1E1F2B;
+  --border-medium:  #2A2D3E;
+  --border-active:  #8C5CE7;
+
+  /* ── Legacy token mapping ── */
+  --foreground:              var(--text-white);
+  --card:                    var(--card-bg);
+  --card-foreground:         var(--text-white);
+  --popover:                 var(--surface-primary);
+  --popover-foreground:      var(--text-white);
+  --primary:                 var(--primary-purple);
+  --primary-foreground:      var(--text-white);
+  --secondary:               var(--accent-gold);
+  --secondary-foreground:    var(--text-white);
+  --muted:                   var(--hover-bg);
+  --muted-foreground:        var(--text-secondary);
+  --accent:                  var(--primary-purple);
+  --accent-foreground:       var(--text-white);
+  --destructive:             #EF4444;
+  --destructive-foreground:  var(--text-white);
+  --border:                  var(--border-subtle);
+  --input:                   var(--input-bg);
+  --ring:                    var(--primary-purple);
+  --radius:                  0.5rem;
+
+  /* Gradient aliases */
+  --gradient-start: var(--gradient-cta-from);
+  --gradient-mid:   var(--gradient-cta-mid);
+  --gradient-end:   var(--gradient-cta-to);
+}
+
+@theme inline {
+  --font-sans:    'Inter', sans-serif;
+  --font-display: 'Playfair Display', serif;
+
+  --color-background:          var(--background);
+  --color-foreground:          var(--foreground);
+  --color-card:                var(--card);
+  --color-card-foreground:     var(--card-foreground);
+  --color-popover:             var(--popover);
+  --color-popover-foreground:  var(--popover-foreground);
+  --color-primary:             var(--primary);
+  --color-primary-foreground:  var(--primary-foreground);
+  --color-secondary:           var(--secondary);
+  --color-secondary-foreground:var(--secondary-foreground);
+  --color-muted:               var(--muted);
+  --color-muted-foreground:    var(--muted-foreground);
+  --color-accent:              var(--accent);
+  --color-accent-foreground:   var(--accent-foreground);
+  --color-destructive:         var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border:              var(--border);
+  --color-input:               var(--input);
+  --color-ring:                var(--ring);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: var(--radius);
+  --radius-xl: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+  html {
+    background: var(--background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background: var(--background);
+    color: var(--text-white);
+    font-family: var(--font-inter, Inter, sans-serif);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-playfair, 'Playfair Display', serif);
+    font-weight: 700;
+  }
+
+  /* Native select / input resets */
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: none;
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] { -moz-appearance: textfield; }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar        { width: 4px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background: var(--hover-bg); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--primary-purple); }
+}
