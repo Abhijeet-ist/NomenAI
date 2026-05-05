@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Home, Sparkles, Bookmark, Clock, Moon, Sun } from 'lucide-react'
+import { Home, Sparkles, Bookmark, Clock, MessageCircle, Moon, Sun } from 'lucide-react'
 
 interface NavItem {
   icon: React.ElementType
@@ -14,6 +14,7 @@ const topNavItems: NavItem[] = [
   { icon: Sparkles,  label: 'Generate', id: 'generate' },
   { icon: Bookmark,  label: 'Saved',    id: 'saved'    },
   { icon: Clock,     label: 'History',  id: 'history'  },
+  { icon: MessageCircle, label: 'Chat', id: 'chat'   },
 ]
 
 const bottomNavItems: NavItem[] = [
@@ -21,8 +22,8 @@ const bottomNavItems: NavItem[] = [
 ]
 
 interface SidebarProps {
-  activePage?: 'home' | 'generate' | 'saved' | 'history'
-  onPageChange?: (page: 'home' | 'generate' | 'saved' | 'history') => void
+  activePage?: 'home' | 'generate' | 'saved' | 'history' | 'chat'
+  onPageChange?: (page: 'home' | 'generate' | 'saved' | 'history' | 'chat') => void
   darkMode?: boolean
   onThemeToggle?: () => void
 }
@@ -32,7 +33,7 @@ export function Sidebar({ activePage = 'home', onPageChange, darkMode = true, on
   const [localDarkMode, setLocalDarkMode] = useState(darkMode)
 
   const handlePageChange = (id: string) => {
-    if (id === 'home' || id === 'generate' || id === 'saved' || id === 'history') {
+    if (id === 'home' || id === 'generate' || id === 'saved' || id === 'history' || id === 'chat') {
       setLocalActive(id)
       if (onPageChange) {
         onPageChange(id)

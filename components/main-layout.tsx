@@ -5,6 +5,7 @@ import { Sidebar } from '@/components/sidebar'
 import { TopBar } from '@/components/topbar'
 import { InputPanel } from '@/components/input-panel'
 import { OutputPanel } from '@/components/output-panel'
+import { ChatBot } from '@/components/chatbot'
 
 export interface GeneratedName {
   id: string
@@ -20,7 +21,7 @@ export function MainLayout() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [darkMode, setDarkMode] = useState(true)
-  const [activePage, setActivePage] = useState<'home' | 'generate' | 'saved' | 'history'>('generate')
+  const [activePage, setActivePage] = useState<'home' | 'generate' | 'saved' | 'history' | 'chat'>('generate')
   const [history, setHistory] = useState<GeneratedName[]>([])
 
   // Load bookmarks from localStorage on mount
@@ -415,6 +416,12 @@ export function MainLayout() {
                   Start Generating
                 </button>
               </div>
+            </div>
+          )}
+
+          {activePage === 'chat' && (
+            <div className="w-full h-full" style={{ overflow: 'hidden' }}>
+              <ChatBot />
             </div>
           )}
         </div>
